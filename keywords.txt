@@ -1,0 +1,17 @@
+# -----------------------------------------
+# Syntax colouring for FourteenSegDisplaylibrary
+# -----------------------------------------
+
+# Datatypes (such as objects)
+FourteenSegDisplay	KEYWORD1
+
+# Methods / functions
+
+displayASCIIwDot	KEYWORD2
+displayASCII	KEYWORD2
+displaySeg	KEYWORD2
+displayHex	KEYWORD2
+
+# Constants
+
+
