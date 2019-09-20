@@ -70,9 +70,9 @@ Note: N is number of digits
 | QG |  | g1 13 |
 | QH |  |  g2 6 |
 |    | QA | h 17 |
-|    | QB | l 2 |
-|    | QC | j 15 |
-|    | QD | k 14 |
+|    | QB | j 15 |
+|    | QC | k 14 |
+|    | QD | l 2  |
 |    | QE | m 4 |
 |    | QF | n 5 |
 |    | QG | DP 8 |
