@@ -7,9 +7,9 @@ Overview
 It requires 2 or 3 Daisy chained shift registers.
 Library is also designed to work with common anode and common cathode module.
 Library includes ASCII font and also supports Hexadecimal, Decimal point, strings.
-Optimized low memory footprint. It also provides a function for manually setting
+Optimised low memory footprint. It also provides a function for manually setting
 segments to any user defined pattern. 
-Also the library will suport seven and 16 segment displays.
+Also the library will support seven and 16 segment displays.
 * Author: Gavin Lyons.
 * Development platform: Tested on a Arduino NANO & UNO.
 * Copyright: (C) 2019 G Lyons. See license.md.
@@ -113,6 +113,8 @@ is the Least significant or right most Digit.
 Fourteen Segment
 ----------------------
 
+ASCII 14 segment font:
+
 ![ font ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14seg5.jpg)
 
 A fourteen-segment display (FSD) sometimes referred to as a Starburst, Alphanumeric or Union Jack display.
@@ -129,11 +131,11 @@ The module was tested on was a two digit LDD-F5406RI common cathode module.
 Library is also designed to work with common anode(If using common anode the transistors PNP
 will have to switch Digit pin to VCC (not GND as per schematic) to activate.
 Library includes ASCII font and also supports Hexadecimal, Decimal point.
-Optimized low memory footprint. It also provides a function for manually setting
+Optimised low memory footprint. It also provides a function for manually setting
 segments to any user defined pattern.  There are two different designs(models) 
 Sketch uses 2516 bytes (8%) of program storage space. Maximum is 30720 bytes.
 Global variables use 235 bytes (11%) of dynamic memory, leaving 1813 bytes for local variables. Maximum is 2048 bytes.)
-The LDD-F5406RI short-form datasheet is in extra folder(lib should work all types of
+The LDD-F5406RI short-form data-sheet is in extra folder(lib should work all types of
 LED 14 segment modules just wiring in schematic maybe different, Check your datasheet)
 The main example file(FourteenSegDisplay_TEST) covers both models,
 Just change the "model2" and "testnumber" at top of file,
@@ -160,12 +162,12 @@ This model needs two shift registers.
 
 Use transistors to switch Digits on/off unless using high value of 
 current limit resistor: For example 2.2K resistors will ((1.44mA) * 15= 21.6mA )will 
-give total current per digit of 21.6mA with all segments on
+give total current per digit of 21.6mA with all segments on.
 
 **Connections**
 
-Note: N is number of digits (eg for eight digits (D8D7D65D4D3D2D1). For purposes of the schematic and software D1
-is the Least significant or right most Digit. 
+Note: N is number of digits (eg for eight digits (D8D7D65D4D3D2D1). 
+For purposes of the schematic and software D1 is the Least significant or right most Digit. 
 If adding more modules or larger modules simply add another GPIO for each digit. and connect data lines
 together(a to a , b to b etc) You can add as  many digits as you want.
 
@@ -253,7 +255,7 @@ and third to controls digits. The last bit of third register controls decimal po
 As a result this limits maximum display size to seven digits but
 If user does not want decimal point support this can be disabled by setting a parameter.
 and user can use all 8. 
-This model supports a  maximum of 7-8 digits (eg for eight digits (D8D7D65D4D3D2D1). 
+This model supports a maximum of 7-8 digits (eg for eight digits (D8D7D65D4D3D2D1). 
 For purposes of the schematic and software D1
 is the Least significant or right most Digit. This library was tested on a
 single digit PSC05-11SURKWA common cathode. This table can be expanded to 7-8
@@ -287,3 +289,7 @@ digits.
 |   |    |    | QA  | Digit1 11 thru a transistor npn switch|
 |   |    |    | QB-QG  | extra digits as needed |
 |   |    |    | QH  | Decimal point 12 |
+
+![ layout ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/16seg.png)
+
+EOF
