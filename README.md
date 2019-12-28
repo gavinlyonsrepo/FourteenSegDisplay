@@ -66,6 +66,8 @@ The *_TEST.ino files contains a set of tests demonstrating library functions.
 8. void displaySeg(uint16_t value, uint8_t digits);
 9. void displayString(const char* str, uint8_t startPos); // Not available in Model1 14 seg
 
+16 , 14 and 7 displays segments layout.
+
 ![ layout ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14seg2.png)
 
 
@@ -74,10 +76,10 @@ Seven Segment
 
 A seven-segment display is a form of electronic display device for displaying decimal numerals.
 Seven-segment displays are widely used in digital clocks, electronic meters, basic calculators, 
-and other electronic devices that display numerical information.[
+and other electronic devices that display numerical information.
 The first shift register sets the eight bits of data and the second controls the 
-digits. Tested on a 2381AS 3 digit common anode. Will also  work with common cathode
-(note change transistor for NPN and emiiter to GND) 
+digits. Tested on a 2381AS 3 digit common anode. Will also work with common cathode.
+(note change transistor for NPN and emiiter to GND).
 The design supports maximum eight digits, Just add more digits to rest
 of shift registers pins in order. D8D7D6D5D4D3D2D1
 For purposes of the schematic and software D1
@@ -104,12 +106,14 @@ is the Least significant or right most Digit.
 |   |    | QA | D1 8 |
 |   |    | QB | D2 9 | 
 |   |    | QC | D3 12 |
-
+|   |    | QD-QH    | Extra digits as needed |
 
 ![ layout ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/7seg.png)
 
 Fourteen Segment
 ----------------------
+
+![ font ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14seg5.jpg)
 
 A fourteen-segment display (FSD) sometimes referred to as a Starburst, Alphanumeric or Union Jack display.
 is a type of display based on 14 segments that can be turned on or off to produce letters and numerals.
@@ -122,7 +126,7 @@ An Arduino library to display data on a 14 segment LED module.
 It requires two or three daisy chained shift registers.
 Tested with 74HC595 shift registers.
 The module was tested on was a two digit LDD-F5406RI common cathode module.
-Library is also designed to work with common anode(If using common anode the transistors 
+Library is also designed to work with common anode(If using common anode the transistors PNP
 will have to switch Digit pin to VCC (not GND as per schematic) to activate.
 Library includes ASCII font and also supports Hexadecimal, Decimal point.
 Optimized low memory footprint. It also provides a function for manually setting
@@ -137,6 +141,8 @@ to model and test you want run.
 The second file (FourteenSegDisplay_ADC),
 shows a practical example using Model2 to display a ADC value on display. 
 The library was tested on a two digit LDD-F5406RI common  cathode.
+
+I recommend Model 2 , less GPIO used and more Software functions.
 
 **Models Table comparison**
 
@@ -227,11 +233,9 @@ for digits 3-8.
 |   |    | QG |     | DP 8 |
 |   |    |    | QA  | Digit1 11 |
 |   |    |    | QB  | Digit2 16 |
-
+|   |    |    | QB-QH | extra digits as needed |
 
 ![ Model 2 sch ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14segModel2.png)
-
-![ font ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14seg5.jpg)
 
 
 Sixteen Segment
@@ -247,12 +251,12 @@ adding four diagonal and two vertical segments and splitting the three horizonta
 This design requires 3 shift registers. 2 shift registers move data word to display
 and third to controls digits. The last bit of third register controls decimal point.
 As a result this limits maximum display size to seven digits but
-If user does not want decmial point support this can be disabled by setting a parameter.
+If user does not want decimal point support this can be disabled by setting a parameter.
 and user can use all 8. 
 This model supports a  maximum of 7-8 digits (eg for eight digits (D8D7D65D4D3D2D1). 
 For purposes of the schematic and software D1
 is the Least significant or right most Digit. This library was tested on a
-single digit PSC05-11SURKWA common cathode. This table can be expaned to 7-8
+single digit PSC05-11SURKWA common cathode. This table can be expanded to 7-8
 digits.
 
 **Connections**
@@ -281,4 +285,5 @@ digits.
 |   |    | QG |     | t 7 |
 |   |    | QH |     | u 5 |
 |   |    |    | QA  | Digit1 11 thru a transistor npn switch|
+|   |    |    | QB-QG  | extra digits as needed |
 |   |    |    | QH  | Decimal point 12 |
