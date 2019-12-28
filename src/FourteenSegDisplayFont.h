@@ -23,7 +23,7 @@ const PROGMEM uint16_t FourteenSeg[96] = {
     0x0800, // , 
     0x00C0, // - 
     0x4000, // . 
-    0x0C00, // / 
+    0x0C00, // Backward slash
     0x0C3F, // 0 
     0x0406, // 1 
     0x00DB, // 2 
@@ -68,7 +68,7 @@ const PROGMEM uint16_t FourteenSeg[96] = {
     0x00EE, // Y 
     0x0C09, // Z 
     0x0039, // [ 
-    0x2100, // \ 
+    0x2100, // forward slash
     0x000F, // ] 
     0x2800, // ^ 
     0x0008, // _ 
