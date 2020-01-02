@@ -83,7 +83,7 @@ digits. Tested on a 2381AS 3 digit common anode. Will also work with common cath
 The design supports maximum eight digits, Just add more digits to rest
 of shift registers pins in order. D8D7D6D5D4D3D2D1
 For purposes of the schematic and software D1
-is the Least significant or right most Digit. 
+is the Least significant or right most Digit. LSB RHS.
 
 ![ 7seg ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/7seg2.jpg)
 
@@ -103,7 +103,7 @@ is the Least significant or right most Digit.
 |   | QF |  | f 10 |
 |   | QG |  | g 5 |
 |   | QH |  |  DP 3 |
-|   |    | QA | D1 8 |
+|   |    | QA | D1 8 LSB RHS |
 |   |    | QB | D2 9 | 
 |   |    | QC | D3 12 |
 |   |    | QD-QH    | Extra digits as needed |
@@ -167,7 +167,7 @@ give total current per digit of 21.6mA with all segments on.
 **Connections**
 
 Note: N is number of digits (eg for eight digits (D8D7D65D4D3D2D1). 
-For purposes of the schematic and software D1 is the Least significant or right most Digit. 
+For purposes of the schematic and software D1 is the Least significant or right most Digit.  LSB RHS.
 If adding more modules or larger modules simply add another GPIO for each digit. and connect data lines
 together(a to a , b to b etc) You can add as  many digits as you want.
 
@@ -192,9 +192,8 @@ together(a to a , b to b etc) You can add as  many digits as you want.
 |   |    | QE | m 4 |
 |   |    | QF | n 5 |
 |   |    | QG | DP 8 |
-| GPIO, D1 | | | Digit 1 11 |
-| GPIO, D2 | | | Digit 2 16 |
-
+| GPIO, D1 | | | Digit 1 11 LSB RHS |
+| GPIO, D2 | | | Digit 2 16 | 
 
 ![ Model 1 sch ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14segModel1.png)
 
@@ -207,7 +206,7 @@ This model uses a third shift register to switch on and off digits as a result i
 
 This model supports a  maximum of 8 digits (eg for eight digits (D8D7D65D4D3D2D1). 
 For purposes of the schematic and software D1
-is the Least significant or right most Digit. 
+is the Least significant or right most Digit.  LSB RHS.
 The table below can be expanded by 6 more digits if more LED modules added
 for digits 3-8. 
 
@@ -233,9 +232,9 @@ for digits 3-8.
 |   |    | QE |     | m 4 |
 |   |    | QF |     | n 5 |
 |   |    | QG |     | DP 8 |
-|   |    |    | QA  | Digit1 11 |
-|   |    |    | QB  | Digit2 16 |
-|   |    |    | QB-QH | extra digits as needed |
+|   |    |    | QA  | Digit1 11 LSB RHS|
+|   |    |    | QB  | Digit2 16  |
+|   |    |    | QC-QH | extra digits as needed |
 
 ![ Model 2 sch ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14segModel2.png)
 
@@ -257,8 +256,8 @@ If user does not want decimal point support this can be disabled by setting a pa
 and user can use all 8. 
 This model supports a maximum of 7-8 digits (eg for eight digits (D8D7D65D4D3D2D1). 
 For purposes of the schematic and software D1
-is the Least significant or right most Digit. This library was tested on a
-single digit PSC05-11SURKWA common cathode. This table can be expanded to 7-8
+is the Least significant or right most Digit.  LSB RHS.
+This library was tested on a single digit PSC05-11SURKWA common cathode. This table can be expanded to 7-8
 digits.
 
 **Connections**
@@ -286,10 +285,9 @@ digits.
 |   |    | QF |     | s 14 |
 |   |    | QG |     | t 7 |
 |   |    | QH |     | u 5 |
-|   |    |    | QA  | Digit1 11 thru a transistor npn switch|
+|   |    |    | QA  | Digit1 11 LSB RHS |
 |   |    |    | QB-QG  | extra digits as needed |
 |   |    |    | QH  | Decimal point 12 |
 
 ![ layout ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/16seg.png)
 
-EOF
