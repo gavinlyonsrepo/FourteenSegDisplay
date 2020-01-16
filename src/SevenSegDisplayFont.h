@@ -23,7 +23,7 @@ const  PROGMEM uint8_t SevenSeg[96] = {
 	0x10, // , 
 	0x40, // - 
 	0x80, // . 
-	0x52, // Backward slash
+	0x52, // slash
 	0x3F, // 0 
 	0x06, // 1 
 	0x5B, // 2 
@@ -68,7 +68,7 @@ const  PROGMEM uint8_t SevenSeg[96] = {
 	0x6E, // Y 
 	0x5B, // Z 
 	0x39, // [ 
-	0x64, // forward slash 
+	0x64, // backslash 
 	0x0F, // ] 
 	0x23, // ^ 
 	0x08, // _ 

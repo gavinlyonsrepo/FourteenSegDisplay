@@ -33,6 +33,19 @@ public:
     SevenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common = true);
     
     // Methods
+    
+     /*
+    Note: 
+    The digits/startPos parameter in the functions refers to the position/starting bit.
+    0x80  b10000000 D8 LHS 
+    0x40- b01000000 D7 
+    0x20- b00100000 D6  
+    0x10- b00010000 D5
+    0x08- b00001000 D4
+    0x04- b00000100 D3
+    0x02- b00000010 D2
+    0x01- b00000001 D1 RHS
+    */
 
     // Send ASCII value to 7 segment display, passed ASCII value byte, 
     // and  digit position0x80-0x40-0x20-0x10-0x08-0x04-0x02-0x01-0x00  D8-D1

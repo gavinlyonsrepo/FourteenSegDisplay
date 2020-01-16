@@ -6,5 +6,7 @@
 * Version 2.0.0 November 2019
 	* Added Model 2 for Fourteen segment displays
 	* Added Sixteen segment display support
-	* added Seven Segment display support
+	* Added Seven Segment display support
 
+* Version 2.1.0 Jan 2020
+	* Added Nine Segment display support

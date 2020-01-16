@@ -5,6 +5,7 @@
 # Datatypes (such as objects)
 SixteenSegDisplay	KEYWORD1
 FourteenSegDisplay	KEYWORD1
+NineSegDisplay	KEYWORD1
 SevenSegDisplay	KEYWORD1
 
 # Methods / functions
