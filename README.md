@@ -129,6 +129,8 @@ The others will work with code but font file will need adjustment for some chara
 
 ![ 9seg ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/9seg.jpg)
 
+![ 9seg2 ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/9seg2.jpg)
+
 **Connections**
 
 Segments order 6 bits digits control D6D5D4D3D2D1. + 10 bits of segment control (DP)ihgfedcba.
