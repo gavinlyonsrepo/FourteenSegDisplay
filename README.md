@@ -25,6 +25,7 @@ Table of contents
   * [Nine Segment](#nine-segment)
   * [Fourteen Segment](#fourteen-segment)
   * [Sixteen Segment](#sixteen-segment)
+  * [See Also](#see-also)
 
 Install
 -----------------------
@@ -340,3 +341,9 @@ digits.
 |   |    |    | QA  | Digit1 11 thru a transistor npn switch|
 |   |    |    | QB-QG  | extra digits as needed |
 |   |    |    | QH  | Decimal point 12 |
+
+
+See Also
+------------------------
+
+[LED Segment Display Simulator](https://github.com/gavinlyonsrepo/LED_Segment_Display_Simulator)
