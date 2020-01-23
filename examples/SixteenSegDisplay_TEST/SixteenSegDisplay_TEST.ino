@@ -4,7 +4,6 @@
   Description: test example file for SixteenSegDisplay library
   In this case a 2 digit setup.
   Author: Gavin Lyons.
-  Created June 2019
   URL: https://github.com/gavinlyonsrepo/FourteenSegDisplay
 */
 
@@ -24,10 +23,9 @@ const boolean COMMON = true;
 const boolean NODECPOT = true; 
 
 //testnumber defines which test to run 
-uint8_t testnumber = 1; //1= Hex 2= ASCII, 3 = ASCIIdot,  4 = segment, 5 & 6 = Stings(model 2 only)
+uint8_t testnumber = 1; //1= Hex 2= ASCII, 3 = ASCIIdot,  4 = segment, 5 & 6 = Stings
   
 #define initdelay 500  //optional
-#define digitdelay 1   //optional
 
 
 //Constructor object 
@@ -74,7 +72,7 @@ void myTEST()
        mydisplay.displayASCII('B', 0x01, true);  //test 3 ASCII with dot
     break;
     case 4:
-        mydisplay.displaySeg(0x4000, 0x01, false);  // test 4 Segments manual, u segs
+        mydisplay.displaySeg(0x4000, 0x01, false);  // test 4 Segments manual, t seg
     break;
     } 
     
@@ -91,7 +89,7 @@ void myTEST()
         mydisplay.displayASCII('A', 0x02, true);  //test 3 ASCII with dot
     break;
     case 4:
-        mydisplay.displaySeg(0x4400, 0x02,false);  // test 4 Segments manual, u-p segs
+        mydisplay.displaySeg(0x8800, 0x02,false);  // test 4 Segments manual, u-p segs two center segs
     break;
     } 
 }

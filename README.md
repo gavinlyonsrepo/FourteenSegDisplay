@@ -9,7 +9,7 @@ Library is also designed to work with common anode and common cathode module.
 Library includes ASCII font and also supports Hexadecimal, Decimal point, strings.
 Optimized low memory footprint. It also provides a function for manually setting
 segments to any user defined pattern. 
-Also the library will suport seven, nine and 16 segment displays.
+Also the library will support seven, nine and 16 segment displays.
 * Author: Gavin Lyons.
 * Development platform: Tested on a Arduino NANO & UNO.
 * Copyright: (C) 2019 G Lyons. See license.md.
@@ -310,8 +310,9 @@ and user can use all 8.
 This model supports a  maximum of 7-8 digits (eg for eight digits (D8D7D65D4D3D2D1). 
 For purposes of the schematic and software D1
 is the Least significant or right most Digit. This library was tested on a
-single digit PSC05-11SURKWA common cathode. This table can be expanded to 7-8
-digits.
+single digit PSC05-11SURKWA common cathode(schematic) and a PSA08-11EWA common anode.
+
+This table can be expanded to 7-8 digits.
 
 **Connections**
 
@@ -334,8 +335,8 @@ digits.
 |   |    | QB |     | m 2 |
 |   |    | QC |     | n 17 |
 |   |    | QD |     | p 15 |
-|   |    | QE |     | r 6 |
-|   |    | QF |     | s 14 |
+|   |    | QE |     | r 14 | 
+|   |    | QF |     | s 6| 
 |   |    | QG |     | t 7 |
 |   |    | QH |     | u 5 |
 |   |    |    | QA  | Digit1 11 thru a transistor npn switch|
@@ -343,7 +344,13 @@ digits.
 |   |    |    | QH  | Decimal point 12 |
 
 
+![ 16seg2 ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/16seg2.png)
+
 See Also
 ------------------------
 
-[LED Segment Display Simulator](https://github.com/gavinlyonsrepo/LED_Segment_Display_Simulator)
+[LED Segment Display Simulator character/pattern creator](https://github.com/gavinlyonsrepo/LED_Segment_Display_Simulator)
+
+![ Segments ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/segments.jpg)
+
+
