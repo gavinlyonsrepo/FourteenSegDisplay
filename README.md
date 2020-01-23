@@ -344,7 +344,7 @@ This table can be expanded to 7-8 digits.
 |   |    |    | QH  | Decimal point 12 |
 
 
-![ 16seg2 ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/16seg2.png)
+![ 16seg2 ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/16seg.png)
 
 See Also
 ------------------------
