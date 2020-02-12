@@ -15,6 +15,7 @@ displayASCII	KEYWORD2
 displaySeg	KEYWORD2
 displayHex	KEYWORD2
 displayString	KEYWORD2
+displayBegin	KEYWORD2
 
 # Constants
 

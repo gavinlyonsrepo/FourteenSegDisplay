@@ -16,9 +16,13 @@ NineSegDisplay::NineSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool co
   _data_IO = data;
   _rclk_IO = rclk;
   _commonCathode = common;
-  pinMode(sclk, OUTPUT);
-  pinMode(data, OUTPUT);
-  pinMode(rclk, OUTPUT);
+}
+
+void NineSegDisplay::displayBegin() 
+{ 
+  pinMode(_sclk_IO, OUTPUT);
+  pinMode(_data_IO, OUTPUT);
+  pinMode(_rclk_IO, OUTPUT);
 }
 
 void NineSegDisplay::displaySeg(uint16_t value, uint8_t digits) 
@@ -55,7 +59,7 @@ void NineSegDisplay::displayASCIIwDot(uint8_t ascii, uint8_t digits) {
 void NineSegDisplay::displayHex(uint8_t hex, uint8_t digits) 
 {
     uint8_t hexchar = 0;
-    if ((hex >= 0) && (hex <= 9))
+    if (hex <= 9)
     {
         displaySeg(pgm_read_word(&NineSeg[hex + HEX_OFFSET]), digits);
         // 16 is offset in reduced ASCII table for 0 

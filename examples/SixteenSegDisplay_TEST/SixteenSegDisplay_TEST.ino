@@ -4,6 +4,7 @@
   Description: test example file for SixteenSegDisplay library
   In this case a 2 digit setup.
   Author: Gavin Lyons.
+  Created June 2019
   URL: https://github.com/gavinlyonsrepo/FourteenSegDisplay
 */
 
@@ -26,6 +27,7 @@ const boolean NODECPOT = true;
 uint8_t testnumber = 1; //1= Hex 2= ASCII, 3 = ASCIIdot,  4 = segment, 5 & 6 = Stings
   
 #define initdelay 500  //optional
+#define digitdelay 1   //optional
 
 
 //Constructor object 
@@ -34,9 +36,9 @@ SixteenSegDisplay  mydisplay(RCLK595, SCLK595,  SER595, COMMON, NODECPOT);
 void setup()
 {
   // Setup serial for debug optional
-  Serial.begin(9600);
-  Serial.println("------------- Debug Comms UP ------------");
-  delay(initdelay);
+  //Serial.begin(9600);
+  //Serial.println("------------- Debug Comms UP ------------");
+ mydisplay.displayBegin();
 }
 
 void loop()
@@ -72,7 +74,7 @@ void myTEST()
        mydisplay.displayASCII('B', 0x01, true);  //test 3 ASCII with dot
     break;
     case 4:
-        mydisplay.displaySeg(0x4000, 0x01, false);  // test 4 Segments manual, t seg
+        mydisplay.displaySeg(0x4000, 0x01, false);  // test 4 Segments manual, u segs
     break;
     } 
     
@@ -89,7 +91,7 @@ void myTEST()
         mydisplay.displayASCII('A', 0x02, true);  //test 3 ASCII with dot
     break;
     case 4:
-        mydisplay.displaySeg(0x8800, 0x02,false);  // test 4 Segments manual, u-p segs two center segs
+        mydisplay.displaySeg(0x4400, 0x02,false);  // test 4 Segments manual, u-p segs
     break;
     } 
 }

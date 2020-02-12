@@ -34,6 +34,9 @@ public:
     
     // Methods
     
+    //Sets the Pinmodes , call in setup.
+	void displayBegin();
+	
     /*
     Note: 
     The digits/startPos parameter in the functions refers to the position/starting bit

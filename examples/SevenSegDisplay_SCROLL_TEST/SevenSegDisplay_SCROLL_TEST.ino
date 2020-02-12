@@ -6,7 +6,7 @@
   
   1. TEST 1 display Integer
   2. TEST 2 display FLoat
-  3. TEST 3 Scroll data
+  3. TEST 3 Scroll data (uses the String object)
   
   Author: Gavin Lyons.
   Created Jan 2020
@@ -20,12 +20,9 @@
 #define  RCLK595 6 //RCLK pin 12 74HC595
 #define  SCLK595 7 //SCLK pin 11  74HC595
 #define  SER595  8 //SERIN pin 14 74HC595
-// DEVELOPER NOTE: pinout Connectors on custom development board: VCC, SERIN-14 , SCLK-11 , RCLK-12 , GND
 const boolean COMMON_C = true; //true for common_cathode(default) , false for common anode
 //Constructor object
 SevenSegDisplay  mydisplay(RCLK595, SCLK595,  SER595, COMMON_C);
-
-
 
 
 //Control Vars &  defines.
@@ -34,14 +31,14 @@ uint16_t sensorValue0 = 0;
 unsigned long previousMillis_display = 0;        // will store last time ADC was updated
 const long interval_display = 1000;      // interval at which to read ADCs (milliseconds)
 String textScroll = "Hello ";
-uint8_t testnumber = 1; // testnumber defines which test to run 1= integer 2 =float  3 =scroll
+uint8_t testnumber = 3; // testnumber defines which test to run 1= integer 2 =float  3 =scroll
 
 void setup()
 {
   //Setup serial for debug optional
-  Serial.begin(9600);
-#define initdelay 500  //optional
-  Serial.println("------------- Debug Comms UP ------------");
+  //Serial.begin(9600);
+  //Serial.println("------------- Debug Comms UP ------------");
+  mydisplay.displayBegin();
 }
 
 void loop()
@@ -101,9 +98,6 @@ void ADC_Read()
   {
     previousMillis_display = currentMillis;
     sensorValue0 = analogRead(POT0); // read the input on analog pin 0
-    // Send ADC data to serial port DEBUG
-    // Serial.print("POT0 : ");
-    // Serial.println(sensorValue0);
     if (textScroll.length() > 0)
     {
       textScroll.remove(0, 1);

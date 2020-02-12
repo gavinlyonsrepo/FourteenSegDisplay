@@ -16,9 +16,13 @@ SevenSegDisplay::SevenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool 
   _data_IO = data;
   _rclk_IO = rclk;
   _commonCathode = common;
-  pinMode(sclk, OUTPUT);
-  pinMode(data, OUTPUT);
-  pinMode(rclk, OUTPUT);
+}
+
+void SevenSegDisplay::displayBegin() 
+{ 
+  pinMode(_sclk_IO, OUTPUT);
+  pinMode(_data_IO, OUTPUT);
+  pinMode(_rclk_IO, OUTPUT);
 }
 
 void SevenSegDisplay::displaySeg(uint8_t value, uint8_t digits) 
@@ -46,7 +50,7 @@ void SevenSegDisplay::displayASCIIwDot(uint8_t ascii, uint8_t digits) {
 void SevenSegDisplay::displayHex(uint8_t hex, uint8_t digits) 
 {
     uint8_t hexchar = 0;
-    if ((hex >= 0) && (hex <= 9))
+    if (hex <= 9)
     {
         displaySeg(pgm_read_byte(&SevenSeg[hex + HEX_OFFSET]), digits);
         // 16 is offset in reduced ASCII table for 0 

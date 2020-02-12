@@ -26,7 +26,8 @@ Table of contents
   * [Fourteen Segment](#fourteen-segment)
   * [Sixteen Segment](#sixteen-segment)
   * [See Also](#see-also)
-
+  * [Memory](#memory)
+  
 Install
 -----------------------
 
@@ -41,15 +42,19 @@ See link below for instruction for this and for the other installation methods t
 Files
 ------------------------
 
+The four different fonts are in 4 different files.
+I have kept the cpp files separate in the interests of modularity, ease of hardware setup testing
+and to keep each program use case as small as possible. So in essence this library is four separate libraries packaged in one.
+The TEST.ino files contains a set of tests demonstrating library functions.
+
 **Files table**
 
-| Segment | Test files | Font file | Header file | Cpp code file |
+| Segment | Example files | Font file | Header file | Cpp code file |
 | --- | --- | --- | --- |  --- | 
-| 7 | SevenSegDisplay_TEST.ino | SevenSegDisplayFont.h| SevenSegDisplay.h | SevenSegDisplay.cpp |
-| 9 | NineSegDisplay_TEST.ino | NineSegDisplayFont.h| NineSegDisplay.h | NineSegDisplay.cpp |
+| 7 | SevenSegDisplay_TEST.ino SevenSegDisplay_BASIC.ino SevenSegDisplay_SCROLL.ino| SevenSegDisplayFont.h| SevenSegDisplay.h | SevenSegDisplay.cpp |
+| 9 | NineSegDisplay_TEST.ino | NineSegDisplayFont.h | NineSegDisplay.h | NineSegDisplay.cpp |
 | 14 | FourteenSegDisplay_TEST.ino FourteenSegDisplay_ADC.ino | FourteenSegDisplayFont.h | FourteenSegDisplay.h | FourteenSegDisplay.cpp |
 | 16 |  SixteenSegDisplay_TEST.ino | SixteenSegDisplayFont.h | SixteenSegDisplay.h | SixteenSegDisplay.cpp |
-
 
 **Library Functions**
 
@@ -58,21 +63,23 @@ See these file for more details on functions.
 
 1. SevenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common);
 2. NineSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common);
-3. FourteenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common, bool model2);
+3. FourteenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common, bool model2, bool model3);
 4. SixteenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common, bool nodecpoint);
-5. void displayASCII(uint8_t ascii, uint8_t digits);  // 7 9 and 14 seg only 
-6. void displayASCIIwDot(uint8_t ascii, uint8_t digits ); //  7 9 and 14 seg only 
-7. void displayASCII(uint8_t ascii, uint8_t digits , bool dotOn); // 16 seg only
-8. void displayHex(uint8_t hex, uint8_t digits ;
-9. void displaySeg(uint16_t value, uint8_t digits);
-10. void displayString(const char* str, uint8_t startPos); // Not available in Model1 14 seg
+5.  void displayBegin(void); 
+6. void displayASCII(uint8_t ascii, uint8_t digits);  // 7 9 and 14 seg only 
+7. void displayASCIIwDot(uint8_t ascii, uint8_t digits ); //  7 9 and 14 seg only 
+8. void displayASCII(uint8_t ascii, uint8_t digits , bool dotOn); // 16 seg only
+9. void displayHex(uint8_t hex, uint8_t digits ;
+10. void displaySeg(uint16_t value, uint8_t digits);
+11. void displayString(const char* str, uint8_t startPos); // Not available in Model1 14 seg
 
-The fonts are in a separate files, DisplayFont.h.
-The TEST.ino files contains a set of tests demonstrating library functions.
 
-16 , 14 and 7 displays segments layout.
+Display segments layout.
 
 ![ layout ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14seg2.png)
+
+![ layout 2  ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/allseg.jpg)
+
 
 Seven Segment
 --------------------
@@ -87,6 +94,10 @@ The design supports maximum eight digits, Just add more digits to rest
 of shift registers pins in order. D8D7D6D5D4D3D2D1 - 
 For purposes of the schematic and software D1
 is the Least significant or right most Digit. 
+
+There are three help files for seven segment, TEST shows the various different functions, 
+SCROLL shows how to display ADC data as integers, floats and scrolling text.
+BASIC( a "hello world" program) shows the most basic use case displaying a single ASCII letter in single digit.
 
 ![ 7seg ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/7seg2.jpg)
 
@@ -123,9 +134,10 @@ supported in library. There are a few variants of it.
 1. The two extra segments are forward slashes 
 2. The two extra segments are back slashes
 3. The two extra segments are vertical  
-4. Mixed, Mixed veritcal and slashes, mixed forward and backward slashes
+4. Mixed, Mixed vertical and slashes, mixed forward and backward slashes
 
-The font included supports number one occurance only, as it common and defined.
+Only 1 and 2 are commercially available at present. 
+The font included supports number one only, as it most common and defined.
 The others will work with code but font file will need adjustment for some characters.
 
 ![ 9seg ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/9seg.jpg)
@@ -134,9 +146,9 @@ The others will work with code but font file will need adjustment for some chara
 
 **Connections**
 
-Segments order 6 bits digits control D6D5D4D3D2D1. + 10 bits of segment control (DP)ihgfedcba.
-A total of 16 bits sent to Module. 
-This model supports a maximum of 6 digits (eg for six digits (D65D4D3D2D1). 
+Six bits digits control D6D5D4D3D2D1. + 10 bits of segment control (DP)ihgfedcba.
+A total of 16 bits sent to Module thru two shift registers.
+This design supports a maximum of 6 digits. 
 For purposes of the schematic and software D1
 is the Least significant or right most Digit. 
 
@@ -176,34 +188,32 @@ two vertical segments with the middle horizontal segment broken in half.
 A seven-segment display suffices for numerals and certain letters, 
 but unambiguously rendering the ISO basic Latin alphabet requires more detail. 
 
-An Arduino library to display data on a 14 segment LED module.
-It requires two or three daisy chained shift registers.
-Tested with 74HC595 shift registers.
-The module was tested on was a two digit LDD-F5406RI common cathode module.
+The library requires two or three daisy chained shift registers.
+The module that lib was tested on is a two digit LDD-F5406RI common cathode module.
 Library is also designed to work with common anode(If using common anode the transistors PNP
 will have to switch Digit pin to VCC (not GND as per schematic) to activate.
-Library includes ASCII font and also supports Hexadecimal, Decimal point.
+Library includes ASCII font and also supports Strings, Hexadecimal, Decimal point.
 Optimized low memory footprint. It also provides a function for manually setting
-segments to any user defined pattern.  There are two different designs(models) 
-Sketch uses 2516 bytes (8%) of program storage space. Maximum is 30720 bytes.
-Global variables use 235 bytes (11%) of dynamic memory, leaving 1813 bytes for local variables. Maximum is 2048 bytes.)
-The LDD-F5406RI short-form datasheet is in extra folder(lib should work all types of
-LED 14 segment modules just wiring in schematic maybe different, Check your datasheet)
-The main example file(FourteenSegDisplay_TEST) covers both models,
-Just change the "model2" and "testnumber" at top of file,
+segments to any user defined pattern.  
+
+There are three different designs(models) 
+The main example file(FourteenSegDisplay_TEST) covers all three models,
+Just change the "model"  and "testnumber" at top of file,
 to model and test you want run.
 The second file (FourteenSegDisplay_ADC),
 shows a practical example using Model2 to display a ADC value on display. 
 The library was tested on a two digit LDD-F5406RI common  cathode.
 
-I recommend Model 2 , less GPIO used and more Software functions.
+I recommend Model 2 rather than 1, less GPIO used and more Software functions.
+Model 3 is just for users who only have 1-2 digits in project and do not need Decimal point.
 
 **Models Table comparison**
 
 | Model | No of Shift registers | No of GPIO pins | No of digits |
 | --- | --- | --- | --- | 
-| 1 | 2 | 3+ N (N Number of digits) | 1 to infinity |
+| 1 | 2 | 3+ N (N = Number of digits) | 1 to infinity |
 | 2 | 3 | 3 | 1 to 8  |
+| 3 | 2 | 3 | 1 to 2 (no decimal point) |
 
 **Model One**
 
@@ -292,6 +302,18 @@ for digits 3-8.
 ![ Model 2 sch ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14segModel2.png)
 
 
+**Model Three**
+
+Model 3 is just for users who only have 1-2 digits in project and do not need Decimal point.
+It uses the last two digits of the second shift register to switch the two digits
+So same as Model 3 except for these two bits at end and one less shift register. 
+So it sends out two data bytes as abcdefg1g2hjklmnD1D2.
+
+| IC 2 | LDD-F5406RI | 
+ --- | --- |  
+| QG | Digit1 11|
+| QH | Digit2 16 |
+
 Sixteen Segment
 ------------------------------------
 
@@ -311,6 +333,10 @@ This model supports a  maximum of 7-8 digits (eg for eight digits (D8D7D65D4D3D2
 For purposes of the schematic and software D1
 is the Least significant or right most Digit. This library was tested on a
 single digit PSC05-11SURKWA common cathode(schematic) and a PSA08-11EWA common anode.
+
+Note:If only using a single digit it is possible to use two shift registers without a software change
+albeit without Decimal point, simply hard wire the single digit common to VCC or GND depending on Common anode or cathode
+and do not wire up third register and it will work.
 
 This table can be expanded to 7-8 digits.
 
@@ -354,3 +380,11 @@ See Also
 ![ Segments ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/segments.jpg)
 
 
+Memory
+-----------------------
+
+Basic seven segment sketch test file uses 1218 bytes (3%) of program storage space.
+Global variables use 13 bytes (0%) of dynamic memory.
+
+The fourteen segment test file all functions sketch uses 1520 bytes (4%) of program storage space. 
+Global variables use 15 bytes (0%) of dynamic memory.

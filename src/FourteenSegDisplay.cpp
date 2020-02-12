@@ -10,17 +10,24 @@
 #include "FourteenSegDisplay.h"
 #include "FourteenSegDisplayFont.h"
 
-FourteenSegDisplay::FourteenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common, bool Model2) 
+FourteenSegDisplay::FourteenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common, bool Model2, bool Model3) 
 {
+  if (Model2 == true && Model3 == true){
+	  return;} // User input error
   _sclk_IO = sclk;
   _data_IO = data;
   _rclk_IO = rclk;
   _commonCathode = common;
   _Model2 =  Model2;
-  pinMode(sclk, OUTPUT);
-  pinMode(data, OUTPUT);
-  pinMode(rclk, OUTPUT);
+  _Model3 = Model3;
 }
+
+void FourteenSegDisplay::displayBegin()
+{
+    pinMode(_sclk_IO, OUTPUT);
+    pinMode(_data_IO, OUTPUT);
+    pinMode(_rclk_IO, OUTPUT);
+} 
 
 void FourteenSegDisplay::displaySeg(uint16_t value, uint8_t digits) 
 { 
@@ -34,9 +41,12 @@ void FourteenSegDisplay::displaySeg(uint16_t value, uint8_t digits)
   lower = (value) & LOWER_BYTE_MASK;  // select lower byte
   upper = (value >> 8) & LOWER_BYTE_MASK; //select upper 
   digitalWrite(_rclk_IO, LOW);
-  if (_Model2 == true) // Use model 2 if true
-  {
+  if (_Model2 == true){ // Use model 2 if true
       shiftOut(_data_IO, _sclk_IO, MSBFIRST, digits); //digit control
+  }
+  if (_Model3 == true){ // Use model 3 if true
+       digits = digits << 6;
+       upper = upper | digits;
   }
   shiftOut(_data_IO, _sclk_IO, MSBFIRST, upper);
   shiftOut(_data_IO, _sclk_IO, MSBFIRST, lower);
@@ -55,7 +65,7 @@ void FourteenSegDisplay::displayASCIIwDot(uint8_t ascii, uint8_t digits) {
 void FourteenSegDisplay::displayHex(uint8_t hex, uint8_t digits) 
 {
     uint8_t hexchar = 0;
-    if ((hex >= 0) && (hex <= 9))
+    if (hex <= 9)
     {
         displaySeg(pgm_read_word(&FourteenSeg[hex + HEX_OFFSET]), digits);
         // 16 is offset in reduced ASCII table for 0 
@@ -86,7 +96,7 @@ void FourteenSegDisplay::displayString(const char* str, uint8_t startPos)
         }  else {
             displayASCII(c, startPos);
         }
-          startPos = (startPos>>1); //Bitshifting by one to right /2 to chnage postion of bit set position
+          startPos = (startPos>>1); //Bitshifting by one to right /2 to change postion of bit set position
    }
 }
 

@@ -16,13 +16,9 @@
 #define  SCLK595 7 //SCLK 
 #define  SER595  8 //SERIN
 
-
 const boolean COMMON_C = false; //true for common_cathode(default) , false for common anode
 //testnumber defines which test to run 
 uint8_t testnumber = 6; //1= Hex 2= ASCII, 3 = ASCIIdot,  4 = segment, 5 & 6 = Stings(model 2 only)
-  
-#define initdelay 500  //optional
-#define digitdelay 1   //optional
 
 //Constructor object 
 SevenSegDisplay  mydisplay(RCLK595, SCLK595,  SER595, COMMON_C);
@@ -31,7 +27,8 @@ void setup()
 {
   // Setup serial for debug optional
   //Serial.begin(9600);
-  //Serial.println("------------- Debug Comms UP ------------");
+  //Serial.println("------------- Debug Comms UP ------------");.
+  mydisplay.displayBegin();
 }
 
 void loop()
@@ -45,7 +42,7 @@ void ModelOneTEST()
     //**** Display String TEST ****
     if( testnumber == 5 )
     {
-    mydisplay.displayString("ABC", 0x04); // print AB "     AB"
+    mydisplay.displayString("ABC", 0x04); // print ABC "     ABC"
     return;
     }
     if( testnumber == 6 ) //Showing decimal point use

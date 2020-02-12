@@ -10,3 +10,9 @@
 
 * Version 2.1.0 Jan 2020
 	* Added Nine Segment display support
+
+* Version 2.2.0 Feb 2020
+	* Added Two new example files to seven segment section.
+	* Added new method "displayBegin" and removed pinmodes from class constructor.
+	* Added new design Model 3 to Fourteen Segment class.
+

@@ -17,9 +17,13 @@ SixteenSegDisplay::SixteenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, b
   _rclk_IO = rclk;
   _commonCathode = common;
   _NoDecimalPoint = nodecpoint;
-  pinMode(sclk, OUTPUT);
-  pinMode(data, OUTPUT);
-  pinMode(rclk, OUTPUT);
+}
+
+void SixteenSegDisplay::displayBegin()
+{
+  pinMode(_sclk_IO, OUTPUT);
+  pinMode(_data_IO, OUTPUT);
+  pinMode(_rclk_IO, OUTPUT);
 }
 
 void SixteenSegDisplay::displaySeg(uint16_t value, uint8_t digits, bool dotOn) 
@@ -57,7 +61,7 @@ void SixteenSegDisplay::displayASCII(uint8_t ascii, uint8_t digits, bool dotOn) 
 void SixteenSegDisplay::displayHex(uint8_t hex, uint8_t digits) 
 {
     uint8_t hexchar = 0;
-    if ((hex >= 0) && (hex <= 9))
+    if (hex <= 9)
     {
         displaySeg(pgm_read_word(&SixteenSeg[hex + HEX_OFFSET]), digits);
         // 16 is offset in reduced ASCII table for 0 
