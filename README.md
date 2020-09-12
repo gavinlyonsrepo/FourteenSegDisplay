@@ -11,9 +11,14 @@ Optimized low memory footprint. It also provides a function for manually setting
 segments to any user defined pattern. 
 Also the library will support seven, nine and 16 segment displays.
 * Author: Gavin Lyons.
-* Development platform: Tested on a Arduino NANO & UNO.
 * Copyright: (C) 2019 G Lyons. See license.md.
 * History: See changelog.md in documents.
+* Tested on following MCUs 
+
+1. Arduino  UNO & NANO v3
+2. ESP8266 
+3. STM32 STM32F103C8T6  "blue pill"
+4. ATtiny85 
 
 Table of contents
 ---------------------------
