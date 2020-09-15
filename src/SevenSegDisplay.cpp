@@ -10,12 +10,13 @@
 #include "SevenSegDisplay.h"
 #include "SevenSegDisplayFont.h"
 
-SevenSegDisplay::SevenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common) 
+SevenSegDisplay::SevenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common, bool transistors) 
 {
   _sclk_IO = sclk;
   _data_IO = data;
   _rclk_IO = rclk;
   _commonCathode = common;
+  _transistors = transistors;
 }
 
 void SevenSegDisplay::displayBegin() 
@@ -29,9 +30,15 @@ void SevenSegDisplay::displaySeg(uint8_t value, uint8_t digits)
 { 
    if (_commonCathode == false) 
    {
-     value = (value ^ COMMON_ANODE_MASK); // If common anode flip all bits.
-     digits = (digits ^ COMMON_ANODE_MASK);
+     //common anode
+     value = (value ^ FLIP_MASK); // flip all bits on segments
+     if (_transistors == true) digits = (digits ^ FLIP_MASK); // if using transistor on digits, flip bits
+   }else
+   { 
+	  //common_cathode
+	   if (_transistors == false) digits = (digits ^ FLIP_MASK); // if not using transistor on digits, flip bits
    }
+   
    digitalWrite(_rclk_IO, LOW);
    shiftOut(_data_IO, _sclk_IO, MSBFIRST, digits); //digit control
    shiftOut(_data_IO, _sclk_IO, MSBFIRST, value);
@@ -74,14 +81,14 @@ void SevenSegDisplay::displayHex(uint8_t hex, uint8_t digits)
 void SevenSegDisplay::displayString(const char* str, uint8_t startPos)
 {
    char c;
-   while (c = (*str++)) {
+   while ((c = (*str++))) {
         if (*str == '.') {
             displayASCIIwDot(c, startPos);
             str++;
         }  else {
             displayASCII(c, startPos);
         }
-          startPos = (startPos>>1);//Bitshifting by one to right /2 to chnage postion of bit set position
+          startPos = (startPos>>1);//Bitshifting by one to right (/2) to change position of bit set position
    }
 }
 

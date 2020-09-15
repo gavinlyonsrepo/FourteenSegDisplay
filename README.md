@@ -19,6 +19,7 @@ Also the library will support seven, nine and 16 segment displays.
 2. ESP8266 
 3. STM32 STM32F103C8T6  "blue pill"
 4. ATtiny85 
+5. ESP32
 
 Table of contents
 ---------------------------
@@ -31,7 +32,6 @@ Table of contents
   * [Fourteen Segment](#fourteen-segment)
   * [Sixteen Segment](#sixteen-segment)
   * [See Also](#see-also)
-  * [Memory](#memory)
   
 Install
 -----------------------
@@ -56,7 +56,7 @@ The TEST.ino files contains a set of tests demonstrating library functions.
 
 | Segment | Example files | Font file | Header file | Cpp code file |
 | --- | --- | --- | --- |  --- | 
-| 7 | SevenSegDisplay_TEST.ino SevenSegDisplay_BASIC.ino SevenSegDisplay_SCROLL.ino| SevenSegDisplayFont.h| SevenSegDisplay.h | SevenSegDisplay.cpp |
+| 7 | SevenSegDisplay_TEST.ino  SevenSegDisplay_SCROLL.ino| SevenSegDisplayFont.h| SevenSegDisplay.h | SevenSegDisplay.cpp |
 | 9 | NineSegDisplay_TEST.ino | NineSegDisplayFont.h | NineSegDisplay.h | NineSegDisplay.cpp |
 | 14 | FourteenSegDisplay_TEST.ino FourteenSegDisplay_ADC.ino | FourteenSegDisplayFont.h | FourteenSegDisplay.h | FourteenSegDisplay.cpp |
 | 16 |  SixteenSegDisplay_TEST.ino | SixteenSegDisplayFont.h | SixteenSegDisplay.h | SixteenSegDisplay.cpp |
@@ -66,7 +66,7 @@ The TEST.ino files contains a set of tests demonstrating library functions.
 The commented functions can be found in library header files Display.h.
 See these file for more details on functions.
 
-1. SevenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common);
+1. SevenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common, bool transistors);
 2. NineSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common);
 3. FourteenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common, bool model2, bool model3);
 4. SixteenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common, bool nodecpoint);
@@ -94,15 +94,16 @@ Seven-segment displays are widely used in digital clocks, electronic meters, bas
 and other electronic devices that display numerical information.
 The first shift register sets the eight bits of segment data ((DP)gfedcba) and the second controls the 
 digits. Tested on a 2381AS 3 digit common anode. Will also work with common cathode.
-(note change transistor for NPN and emiiter to GND).
+(note change transistor for NPN and emitter to GND). If user wants to switch the digits without transistors
+they can use the "transistors" parameter in the object constructor, NB: do not exceed current limit on pin of the controller by using large values of resistors on segments. The calculation will be depend on the MCU's and Display module used.
+
 The design supports maximum eight digits, Just add more digits to rest
 of shift registers pins in order. D8D7D6D5D4D3D2D1 - 
 For purposes of the schematic and software D1
 is the Least significant or right most Digit. 
 
-There are three help files for seven segment, TEST shows the various different functions, 
-SCROLL shows how to display ADC data as integers, floats and scrolling text.
-BASIC( a "hello world" program) shows the most basic use case displaying a single ASCII letter in single digit.
+There are two example files for seven segment, TEST shows the various different functions, 
+SCROLL shows how to do scroll text.
 
 ![ 7seg ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/7seg2.jpg)
 
@@ -125,7 +126,7 @@ BASIC( a "hello world" program) shows the most basic use case displaying a singl
 |   |    | QA | D1 8 |
 |   |    | QB | D2 9 | 
 |   |    | QC | D3 12 |
-|   |    | QD-QH    | Extra digits as needed |
+|   |    | QD-QH    | D4-D8, 5 Extra digits as needed |
 
 ![ layout ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/7seg.png)
 
@@ -141,9 +142,9 @@ supported in library. There are a few variants of it.
 3. The two extra segments are vertical  
 4. Mixed, Mixed vertical and slashes, mixed forward and backward slashes
 
-Only 1 and 2 are commercially available at present. 
+Only 1 and 2 are commercially available at present as far as I know. 
 The font included supports number one only, as it most common and defined.
-The others will work with code but font file will need adjustment for some characters.
+The others will work with code but font file will need some adjustment for some characters.
 
 ![ 9seg ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/9seg.jpg)
 
@@ -203,14 +204,12 @@ segments to any user defined pattern.
 
 There are three different designs(models) 
 The main example file(FourteenSegDisplay_TEST) covers all three models,
-Just change the "model"  and "testnumber" at top of file,
-to model and test you want run.
 The second file (FourteenSegDisplay_ADC),
 shows a practical example using Model2 to display a ADC value on display. 
 The library was tested on a two digit LDD-F5406RI common  cathode.
 
 I recommend Model 2 rather than 1, less GPIO used and more Software functions.
-Model 3 is just for users who only have 1-2 digits in project and do not need Decimal point.
+Model 3 is just for users who only have 1-2 digits in project and do not need Decimal point(they can still control it form outside library with an extra GPIO).
 
 **Models Table comparison**
 
@@ -226,10 +225,6 @@ This model uses GPIO to switch on and off digits as a result it uses more
 GPIO pins than model 2. It requires (3+N) Digital GPIO pins, where 
 N is number of digits used. So 4 digits requires 7 GPIO + common ground.
 This model needs two shift registers.
-
-Use transistors to switch Digits on/off unless using high value of 
-current limit resistor: For example 2.2K resistors will ((1.44mA) * 15= 21.6mA )will 
-give total current per digit of 21.6mA with all segments on
 
 **Connections**
 
@@ -302,7 +297,7 @@ for digits 3-8.
 |   |    | QG |     | DP 8 |
 |   |    |    | QA  | Digit1 11 |
 |   |    |    | QB  | Digit2 16 |
-|   |    |    | QB-QH | extra digits as needed |
+|   |    |    | QC-QH | 6 extra digits as needed |
 
 ![ Model 2 sch ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14segModel2.png)
 
@@ -383,13 +378,3 @@ See Also
 [LED Segment Display Simulator character/pattern creator](https://github.com/gavinlyonsrepo/LED_Segment_Display_Simulator)
 
 ![ Segments ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/segments.jpg)
-
-
-Memory
------------------------
-
-Basic seven segment sketch test file uses 1218 bytes (3%) of program storage space.
-Global variables use 13 bytes (0%) of dynamic memory.
-
-The fourteen segment test file all functions sketch uses 1520 bytes (4%) of program storage space. 
-Global variables use 15 bytes (0%) of dynamic memory.

@@ -89,7 +89,7 @@ void FourteenSegDisplay::displayHex(uint8_t hex, uint8_t digits)
 void FourteenSegDisplay::displayString(const char* str, uint8_t startPos)
 {
    char c;
-   while (c = (*str++)) {
+   while ((c = (*str++))) {
         if (*str == '.') {
             displayASCIIwDot(c, startPos);
             str++;

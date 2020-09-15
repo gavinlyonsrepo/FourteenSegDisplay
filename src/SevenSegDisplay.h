@@ -19,18 +19,21 @@
 #define ASCII_OFFSET 32 // ASCII table offset to jump over first missing 32 chars
 #define HEX_OFFSET   16 // ASCII table offset to reach 0 position
 #define DOT_MASK_DEC   0x80 //  Mask to switch on decimal point in fourteen segment.   
-#define COMMON_ANODE_MASK 0xFF // mask to be applied if user wants common anode. 
+#define FLIP_MASK 0xFF // mask to be applied for digit control
 
 
 class SevenSegDisplay  {
 
 public:
 	// Constructor 
-	// passed GPIO pins for Rclk Sclk and serial data 74HC595
-	// also passed a boolean value called common
-	// common true = Common Cathode(default)
-	// common false = Common Anode
-	SevenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common = true);
+	// passed 3 GPIO pins for Rclk Sclk and serial data 74HC595
+	// Boolean value called common:
+	// 	  common true = Common Cathode(default)
+	// 	  common false = Common Anode
+	// Boolean value called transistors:
+	//     common true = use transistors to switch digits on(default)
+	//     common false = do not  use transistors to switch digits on
+	SevenSegDisplay(uint8_t rclk, uint8_t sclk, uint8_t data, bool common = true, bool transistors = true);
 	
 	// Methods
 	
@@ -76,7 +79,8 @@ private:
 		uint8_t _sclk_IO;
 		uint8_t _data_IO;
 		uint8_t _rclk_IO;
-		bool _commonCathode;
+		bool _commonCathode=true;
+		bool _transistors=true;
 };
 
  

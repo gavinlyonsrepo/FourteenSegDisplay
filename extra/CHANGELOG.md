@@ -16,3 +16,7 @@
 	* Added new method "displayBegin" and removed pinmodes from class constructor.
 	* Added new design Model 3 to Fourteen Segment class.
 
+* Version 2.3.0 Sep 2020
+	* Changed cpp files so they compile for ESP32 platform, the compiler was "treating some warnings as errors".
+	* Optimised some example files.
+	* Added "transistor"  parameter to seven segment section to allow for user not using transistors to switch digits.  
