@@ -306,7 +306,7 @@ for digits 3-8.
 
 Model 3 is just for users who only have 1-2 digits in project and do not need Decimal point.
 It uses the last two digits of the second shift register to switch the two digits
-So same as Model 3 except for these two bits at end and one less shift register. 
+So same as Model  2 except for these two bits at end and one less shift register. 
 So it sends out two data bytes as abcdefg1g2hjklmnD1D2.
 
 | IC 2 | LDD-F5406RI | 
