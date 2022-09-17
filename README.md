@@ -13,6 +13,7 @@ Also the library will support seven, nine and 16 segment displays.
 * Author: Gavin Lyons.
 * Copyright: (C) 2019 G Lyons. See license.md.
 * History: See changelog.md in documents.
+* [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/paypalme/whitelight976)
 * Tested on following MCUs 
 
 1. Arduino  UNO & NANO v3
