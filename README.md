@@ -1,26 +1,21 @@
-![ module ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14seg4.jpg)
+
+
+![ Segments ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/extra/images/segments.jpg)
 
 Overview
 --------------------------------------------
 * Name: FourteenSegDisplay
-* Description: An Arduino library to display data on a 14 segment LED module.
-It requires 2 or 3 Daisy chained shift registers.
-Library is also designed to work with common anode and common cathode module.
-Library includes ASCII font and also supports Hexadecimal, Decimal point, strings.
-Optimized low memory footprint. It also provides a function for manually setting
-segments to any user defined pattern. 
-Also the library will support seven, nine and 16 segment displays.
-* Author: Gavin Lyons.
-* Copyright: (C) 2019 G Lyons. See license.md.
-* History: See changelog.md in documents.
-* [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/paypalme/whitelight976)
-* Tested on following MCUs 
+* Description: 
 
-1. Arduino  UNO & NANO v3
-2. ESP8266 
-3. STM32 STM32F103C8T6  "blue pill"
-4. ATtiny85 
-5. ESP32
+1. A library for the Arduino eco-System to display data on a 14 segment LED module.
+2. It requires 2 or 3 Daisy chained shift registers.
+3. Common anode and common cathode support.
+4. Supports ASCII font, Hexadecimal, Decimal point, strings.
+5. Optimized low memory footprint. 
+6. Manual setting of segments to any user defined pattern supported. 
+7. Also support seven, nine and sixteen segment displays.
+
+* Author: Gavin Lyons.
 
 Table of contents
 ---------------------------
@@ -32,6 +27,7 @@ Table of contents
   * [Nine Segment](#nine-segment)
   * [Fourteen Segment](#fourteen-segment)
   * [Sixteen Segment](#sixteen-segment)
+  * [Tested](#tested)
   * [See Also](#see-also)
   
 Install
@@ -378,4 +374,16 @@ See Also
 
 [LED Segment Display Simulator character/pattern creator](https://github.com/gavinlyonsrepo/LED_Segment_Display_Simulator)
 
-![ Segments ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/segments.jpg)
+Tested
+----------------------------------------
+* Tested on following MCUs 
+
+1. Arduino  UNO & NANO v3
+2. ESP8266 
+3. STM32 STM32F103C8T6  "blue pill"
+4. ATtiny85 
+5. ESP32
+
+
+![ module ](https://github.com/gavinlyonsrepo/FourteenSegDisplay/blob/master/extra/image/14seg4.jpg)
+
