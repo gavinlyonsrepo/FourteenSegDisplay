@@ -108,9 +108,9 @@ SCROLL shows how to do scroll text.
 
 | Arduino , SW | IC 1 | IC 2 | 2381AS|
 | --- | --- | --- | --- |
-| GPIO , SCLK595 | SCLK  | SCLK  |  |
-| GPIO , RCLK595 | RCLK  | RCLK  |  |
-| GPIO , SER595  | SER   |       |  |
+| GPIO , SCLK 595 | SCK  | SCK  |  |
+| GPIO , RCLK 595 | RCK  | RCK  |  |
+| GPIO , SER 595  | SER   |       |  |
 |                | QH'   | SER   |  |
 |   | QA |  | a 11 |
 |   | QB |  | b 7 |
@@ -157,9 +157,9 @@ is the Least significant or right most Digit.
 
 | Arduino , SW | IC 1 | IC 2 | Nine segment module |
 | --- | --- | --- | --- |
-| GPIO , SCLK595 | SCLK  | SCLK  |  |
-| GPIO , RCLK595 | RCLK  | RCLK  |  |
-| GPIO , SER595  | SER   |       |  |
+| GPIO , SCLK 595 | SCK  | SCK  |  |
+| GPIO , RCLK 595 | RCK  | RCK  |  |
+| GPIO , SER 595  | SER   |       |  |
 |                | QH'   | SER   |  |
 |   | QA |  | a  |
 |   | QB |  | b  |
@@ -232,9 +232,9 @@ together(a to a , b to b etc) You can add as  many digits as you want.
 
 | Arduino , SW | IC 1 | IC 2 | LDD-F5406RI |
 | --- | --- | --- | --- |
-| GPIO , SCLK595 | SCLK  | SCLK  |  |
-| GPIO , RCLK595 | RCLK  | RCLK  |  |
-| GPIO , SER595  | SER   |       |  |
+| GPIO , SCLK 595 | SCK  | SCK  |  |
+| GPIO , RCLK 595 | RCK  | RCK  |  |
+| GPIO , SER 595  | SER   |       |  |
 |                | QH'   | SER   |  |
 |   | QA |  | a 12 |
 |   | QB |  | b 10 |
@@ -272,9 +272,9 @@ for digits 3-8.
 
 | Arduino , SW | IC 1 | IC 2 | IC 3 | LDD-F5406RI | 
 | ---  | --- | --- | --- | --- | 
-| GPIO , SCLK595 | SCLK  | SCLK | SCLK |  |
-| GPIO , RCLK595 | RCLK  | RCLK | RCLK |  |
-| GPIO , SER595 | SER  |  |   |   |
+| GPIO , SCLK 595 | SCK  | SCK | SCK |  |
+| GPIO , RCLK 595 | RCK  | RCK | RCK |  |
+| GPIO , SER 595 | SER  |  |   |   |
 |    | QH'  | SER  |  |   |
 |    |   |  QH' | SER |   |
 |   | QA |    |     | a 12 |
@@ -341,9 +341,9 @@ This table can be expanded to 7-8 digits.
 
 | Arduino , SW | IC 1 | IC 2 | IC 3 | PSC05-11SURKWA | 
 | ---  | --- | --- | --- | --- | 
-| GPIO , SCLK595 | SCLK  | SCLK | SCLK |  |
-| GPIO , RCLK595 | RCLK  | RCLK | RCLK |  |
-| GPIO , SER595 | SER  |  |   |   |
+| GPIO , SCLK 595 | SCK  | SCK | SCK |  |
+| GPIO , RCLK 595 | RCK  | RCK | RCK |  |
+| GPIO , SER 595 | SER  |  |   |   |
 |    | QH'  | SER  |  |   |
 |    |   |  QH' | SER |   |
 |   | QA |    |     | a 1 |
