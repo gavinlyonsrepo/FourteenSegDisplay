@@ -90,7 +90,7 @@ A seven-segment display is a form of electronic display device for displaying de
 Seven-segment displays are widely used in digital clocks, electronic meters, basic calculators, 
 and other electronic devices that display numerical information.
 The first shift register sets the eight bits of segment data ((DP)gfedcba) and the second controls the 
-digits. Tested on a 2381AS 3 digit common anode. Will also work with common cathode.
+digits. Tested on a 2381BS 3 digit common anode. Will also work with common cathode.
 (note change transistor for NPN and emitter to GND). If user wants to switch the digits without transistors
 they can use the "transistors" parameter in the object constructor, NB: do not exceed current limit on pin of the controller by using large values of resistors on segments. The calculation will be depend on the MCU's and Display module used.
 
@@ -106,7 +106,7 @@ SCROLL shows how to do scroll text.
 
 **Connections**
 
-| Arduino , SW | IC 1 | IC 2 | 2381AS|
+| Arduino , SW | IC 1 | IC 2 | 2381BS|
 | --- | --- | --- | --- |
 | GPIO , SCLK 595 | SCK  | SCK  |  |
 | GPIO , RCLK 595 | RCK  | RCK  |  |
